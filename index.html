@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <img src="img/beams.jpg" alt="" class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
+            width="1308" />
+        <div class="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
+        </div>
+        <div class="flex flex-col sm:flex-row sm:mx-auto gap-5">
+            <div class="relative px-6 pt-10 pb-8 w-96 sm:max-w-lg sm:rounded-lg sm:px-10">
+                <div class="mx-auto max-w-md">
+                    <h1 class="text-2xl">Biogas Volume Calculator</h1>
+                    <div class="divide-y divide-gray-300/50">
+                        <div class="space-y-6 py-8 text-base leading-7 text-gray-900">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in posuere quam. Proin
+                                luctus leo ac fringilla malesuada. Nulla condimentum volutpat metus, non suscipit enim
+                                porttitor vel. Phasellus ut congue dolor. Nunc sit amet justo euismod, pharetra tortor
+                                sed, dapibus neque. Morbi quam justo, aliquam id ante sed, tincidunt pellentesque eros.
+                                Vestibulum quis nibh vitae metus vestibulum consequat. Proin elementum ut libero ac
+                                mattis. Mauris ac magna fringilla, auctor orci eu, pretium augue. Suspendisse hendrerit
+                                lorem eu nibh fringilla consequat. Nullam at velit lacinia, consectetur lectus non,
+                                vestibulum elit. Nam risus libero, commodo cursus sem sed, dignissim euismod ipsum. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="relative bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 w-96 sm:max-w-lg sm:rounded-lg sm:px-10">
+                <div class="mx-auto max-w-md">
+                    <!-- <h1 class="text-2xl">Biogas Volume Calculator</h1> -->
+
+                    <div class="divide-y divide-gray-300/50">
+                        <div class="space-y-6 py-8 text-base leading-7 text-gray-600">
+                            <!-- <p>This is some text, please change me.</p> -->
+
+                            <div class="mb-6">
+                                <label for="lowHeight" class="block mb-2 text-sm font-medium text-gray-900">Low
+                                    Height (ft)</label>
+                                <input type="number" id="lowHeight"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="halfLength" class="block mb-2 text-sm font-medium text-gray-900">Half
+                                    Length (ft)</label>
+                                <input type="number" id="halfLength"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="halfWidth" class="block mb-2 text-sm font-medium text-gray-900">Half
+                                    Width (ft)</label>
+                                <input type="number" id="halfWidth"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <button type="button" onclick="calculate()"
+                                class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Calculate</button>
+
+                            <p id="resultFormula"></p>
+
+                            <h1 class="font-semibold text-xl" id="result"></h1>
+                        </div>
+
+                        <!-- <div class="pt-8 text-base font-semibold leading-7">
+                            <p class="text-gray-900">Some link title</p>
+
+                            <p>
+                                <a href="https://tailwindcss.com/docs" class="text-sky-500 hover:text-sky-600">CTA
+                                    &rarr;</a>
+                            </p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+    <script>
+        // volume = lowheight * .5 * halflength * 0.5 * halfwidth
+        function calculate() {
+            const lowHeight = parseInt(document.getElementById('lowHeight').value);
+            const halfLength = parseInt(document.getElementById('halfLength').value);
+            const halfWidth = parseInt(document.getElementById('halfWidth').value);
+            const volume = lowHeight * 0.5 * halfLength * 0.5 * halfWidth;
+
+            document.getElementById('resultFormula').innerText = `Volume = Low Height * 0.5 * Half Length * 0.5 * Half Width`;
+            document.getElementById('result').innerText = `Volume = ${Math.round(volume * 10) / 10} ft^3`;
+        }
+    </script>
+</body>
+
+</html>
