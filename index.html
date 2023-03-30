@@ -22,14 +22,22 @@
                     <h1 class="text-2xl">Biogas Volume Calculator</h1>
                     <div class="divide-y divide-gray-300/50">
                         <div class="space-y-6 py-8 text-base leading-7 text-gray-900">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in posuere quam. Proin
-                                luctus leo ac fringilla malesuada. Nulla condimentum volutpat metus, non suscipit enim
-                                porttitor vel. Phasellus ut congue dolor. Nunc sit amet justo euismod, pharetra tortor
-                                sed, dapibus neque. Morbi quam justo, aliquam id ante sed, tincidunt pellentesque eros.
-                                Vestibulum quis nibh vitae metus vestibulum consequat. Proin elementum ut libero ac
-                                mattis. Mauris ac magna fringilla, auctor orci eu, pretium augue. Suspendisse hendrerit
-                                lorem eu nibh fringilla consequat. Nullam at velit lacinia, consectetur lectus non,
-                                vestibulum elit. Nam risus libero, commodo cursus sem sed, dignissim euismod ipsum. </p>
+                            <p>This biogas volume calculator follows the volume equation of </p>
+                            <p>V = ((Length * Width) / 2)
+                                * (Low Height)</p>
+                            <p> for lagoon style anaerobic digesters. These measurements can be gathered
+                                using the following procedure:</p>
+                            <ol class="list-decimal">
+                                <li>We have found a simple handheld device called <a href="https://www.moasure.com/"
+                                        class="text-sky-500 hover:text-sky-600">Moasure</a> which
+                                    can gather the above data using an iPhone application.</li>
+                                <li>Depending on the fill level (0%, 25%, 75%, or 100%), the low height, length, and
+                                    width
+                                    measurements can be taken using the following procedure shown below:
+                                    <br><br>
+                                    *insert validated procedure with steps*
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -44,25 +52,25 @@
                             <!-- <p>This is some text, please change me.</p> -->
 
                             <div class="mb-6">
-                                <label for="lowHeight" class="block mb-2 text-sm font-medium text-gray-900">Low
-                                    Height (ft)</label>
+                                <label for="length" class="block mb-2 text-sm font-medium text-gray-900">Length
+                                    (ft)</label>
+                                <input type="number" id="length"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="width" class="block mb-2 text-sm font-medium text-gray-900">Width
+                                    (ft)</label>
+                                <input type="number" id="width"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="lowHeight" class="block mb-2 text-sm font-medium text-gray-900">Low Height
+                                    (ft)</label>
                                 <input type="number" id="lowHeight"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    value="0" required>
-                            </div>
-
-                            <div class="mb-6">
-                                <label for="halfLength" class="block mb-2 text-sm font-medium text-gray-900">Half
-                                    Length (ft)</label>
-                                <input type="number" id="halfLength"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    value="0" required>
-                            </div>
-
-                            <div class="mb-6">
-                                <label for="halfWidth" class="block mb-2 text-sm font-medium text-gray-900">Half
-                                    Width (ft)</label>
-                                <input type="number" id="halfWidth"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     value="0" required>
                             </div>
@@ -73,6 +81,8 @@
                             <p id="resultFormula"></p>
 
                             <h1 class="font-semibold text-xl" id="result"></h1>
+
+                            <img class="w-full" src="img/diagram.png" alt="Diagram">
                         </div>
 
                         <!-- <div class="pt-8 text-base font-semibold leading-7">
@@ -90,14 +100,13 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     <script>
-        // volume = lowheight * .5 * halflength * 0.5 * halfwidth
         function calculate() {
+            const length = parseInt(document.getElementById('length').value);
+            const width = parseInt(document.getElementById('width').value);
             const lowHeight = parseInt(document.getElementById('lowHeight').value);
-            const halfLength = parseInt(document.getElementById('halfLength').value);
-            const halfWidth = parseInt(document.getElementById('halfWidth').value);
-            const volume = lowHeight * 0.5 * halfLength * 0.5 * halfWidth;
+            const volume = ((length * width) / 2) * lowHeight;
 
-            document.getElementById('resultFormula').innerText = `Volume = Low Height * 0.5 * Half Length * 0.5 * Half Width`;
+            document.getElementById('resultFormula').innerText = `Volume = ((Length * Width) / 2) * Low Height`;
             document.getElementById('result').innerText = `Volume = ${Math.round(volume * 10) / 10} ft^3`;
         }
     </script>
