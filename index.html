@@ -68,9 +68,19 @@
                             </div>
 
                             <div class="mb-6">
-                                <label for="lowHeight" class="block mb-2 text-sm font-medium text-gray-900">Low Height
+                                <label for="freeboardHeight"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Freeboard Height
                                     (ft)</label>
-                                <input type="number" id="lowHeight"
+                                <input type="number" id="freeboardHeight"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="coverHeight" class="block mb-2 text-sm font-medium text-gray-900">Cover
+                                    Height
+                                    (ft)</label>
+                                <input type="number" id="coverHeight"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     value="0" required>
                             </div>
@@ -78,9 +88,8 @@
                             <button type="button" onclick="calculate()"
                                 class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Calculate</button>
 
-                            <p id="resultFormula"></p>
-
                             <h1 class="font-semibold text-xl" id="result"></h1>
+                            <h1 class="font-semibold text-xl" id="result2"></h1>
 
                             <img class="w-full" src="img/diagram.png" alt="Diagram">
                         </div>
@@ -100,14 +109,39 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     <script>
-        function calculate() {
-            const length = parseInt(document.getElementById('length').value);
-            const width = parseInt(document.getElementById('width').value);
-            const lowHeight = parseInt(document.getElementById('lowHeight').value);
-            const volume = ((length * width) / 2) * lowHeight;
+        function biogasVolume1(b8, b5) {
+            return (-0.00001382 * b8 * b8) + (3.57457926 * b8) - 148273 + b5;
+        }
 
-            document.getElementById('resultFormula').innerText = `Volume = ((Length * Width) / 2) * Low Height`;
-            document.getElementById('result').innerText = `Volume = ${Math.round(volume * 10) / 10} ft^3`;
+        function biogasVolume2(b8, b5) {
+            return (0.3323 * b8) - 17508 + b5;
+        }
+
+        function calculate() {
+            const length = parseFloat(document.getElementById('length').value);
+            const width = parseFloat(document.getElementById('width').value);
+            const freeboardHeight = parseFloat(document.getElementById('freeboardHeight').value);
+            const coverHeight = parseFloat(document.getElementById('coverHeight').value);
+            const b3Area = length * width;
+            const b5FreeboardVolume = (length * width) * freeboardHeight;
+            const b8 = coverHeight * b3Area;
+
+            /*
+            console.log({
+                length: length,
+                width: width,
+                freeboardHeight: freeboardHeight,
+                coverHeight: coverHeight,
+                b3Area: b3Area,
+                b5FreeboardVolume: b5FreeboardVolume,
+                b8: b8
+            });
+            */
+
+            const biogasVolume = coverHeight > 2.8 ? biogasVolume1(b8, b5FreeboardVolume) : biogasVolume2(b8, b5FreeboardVolume);
+
+            document.getElementById('result').innerText = `Volume = ${biogasVolume} ft^3`;
+            document.getElementById('result2').innerText = `Volume = ${(biogasVolume / 27)} yards^3`;
         }
     </script>
 </body>
