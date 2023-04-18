@@ -19,53 +19,31 @@
         <div class="flex flex-col sm:flex-row sm:mx-auto md:gap-5">
             <div class="relative px-6 pt-10 pb-8 sm:max-w-3xl sm:rounded-lg sm:px-10">
                 <div class="mx-auto max-w-3xl">
-                    <h1 class="text-2xl">Biogas Volume Calculator</h1>
+                    <h1 class="text-2xl font-medium">Biogas Volume Calculator</h1>
                     <div class="divide-y divide-gray-300/50">
                         <div class="space-y-6 py-8 text-base leading-7 text-gray-900">
-                            <p>This biogas volume calculator calculates the volume of rectangular lagoon-style anaerobic
-                                digesters using the following equation:</p>
-                            <p>V =IF(B7>2.8,(-0.00001382*B8^2)+(3.57457926*B8)-148273+B5, else (0.3323*B8-17508+B5)
-                            </p>
-                            <ul class="max-w-md space-y-1 list-disc list-inside">
-                                <li>B1 = Length (user input)</li>
-                                <li>B2 = Width (user input)</li>
-                                <li>B3 = B1*B2 = Length * Width = Area</li>
-                                <li>B4 = Freeboard Height (user input)</li>
-                                <li>B5 = (B1*B2)*B4 = (Length*Width)*Freeboard Height = Freeboard Volume</li>
-                                <li>B7 = Cover Height (user input)</li>
-                                <li>B8 = B7*B3 = Cover Height * Area</li>
-                            </ul>
-                            <p>The output is in cubic feet and also in cubic yards (cubic feet/27).
-                                This is the calculation sheet: <a class="text-sky-500 hover:text-sky-600"
-                                    href="https://docs.google.com/spreadsheets/d/1BCEKop_INTDHuMe5SK4zIHNpOYHu3c5f/edit#gid=1512140818"
-                                    target="_blank" rel="noopener noreferrer">Calculation Tool</a></p>
-                            <p>These measurements can be gathered using the following procedure, which is also outlined
-                                extensively in this report: <a class="text-sky-500 hover:text-sky-600"
-                                    href="https://docs.google.com/document/d/1YnVLWxVhnzkUIKbNktvXwmu7yw8kbtRQAbScTiuuwLo/edit"
-                                    target="_blank" rel="noopener noreferrer">Senior Design Report</a></p>
                             <p>
-                                Below is an outline of the steps involved in gathering user input data:
+                                Step-by-step instructions on gathering user input data:
                             </p>
-                            <ol class="list-decimal">
-                                <li>We utilized a handheld measuring device called <a href="https://www.moasure.com/"
-                                        class="text-sky-500 hover:text-sky-600">Moasure</a>, which utilizes bluetooth
-                                    and an iPhone application to easily collect the necessary data for this method.
-                                    After purchasing the Moasure, the application will guide the user through the setup
-                                    and usage process.
+                            <ol class="space-y-1 list-inside list-decimal">
+                                <li>Purchase the <a href="https://www.moasure.com/"
+                                        class="text-sky-500 hover:text-sky-600">Moasure</a>, a handheld measuring
+                                    device.
                                 </li>
-                                <li>Depending on the fill level of the digester (0%, 25%, 75%, or 100%), users can input
-                                    the length, width, freeboard height, and cover height into the biogas volume
-                                    calculator.</li>
-                                <li>To determine the length and width of the digester, the perimeter of the digester can
-                                    be taken.</li>
-                                <li>While the freeboard height is typically standardized at 1.5 feet for most digesters,
-                                    some digesters may have varying freeboard heights.</li>
-                                <li>To determine the cover height, we measure the low point and high point elevations
-                                    and take the average. While these points may vary depending on the digester, we
-                                    offer a reference example for standardized rectangular digesters.
-                                    <img class="w-full md:max-w-lg mt-5" src="img/low-el-high-el.png" alt="Diagram">
+                                <li>Input freeboard height.</li>
+                                <li>Measure around the perimeter of the lagoon to accurately gather the length and width
+                                    input data.</li>
+                                <li>Follow the measuring process shown in the video to gather the low point and high
+                                    point elevations and input
+                                    the values into the calculator.</li>
+                                <li>Click “calculate”.
                                 </li>
                             </ol>
+                            <p class="font-medium"">
+                                All values entered should be in feet, not meters.
+                            </p>
+                            <iframe class=" w-full h-96" src="https://www.youtube.com/embed/XjNsR_k13Rc">
+                                </iframe>
                         </div>
                     </div>
                 </div>
@@ -105,10 +83,19 @@
                             </div>
 
                             <div class="mb-6">
-                                <label for="coverHeight" class="block mb-2 text-sm font-medium text-gray-900">Cover
-                                    Height
+                                <label for="lowPointElevation" class="block mb-2 text-sm font-medium text-gray-900">Low
+                                    Point Elevation
                                     (ft)</label>
-                                <input type="number" id="coverHeight"
+                                <input type="number" id="lowPointElevation"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    value="0" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="highPointElevation"
+                                    class="block mb-2 text-sm font-medium text-gray-900">High Point Elevation
+                                    (ft)</label>
+                                <input type="number" id="highPointElevation"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     value="0" required>
                             </div>
@@ -132,6 +119,37 @@
                 </div>
             </div>
         </div>
+        <div class="flex flex-col sm:flex-row sm:mx-auto md:gap-5">
+            <div class="relative px-6 pt-10 pb-8 sm:max-w-3xl sm:rounded-lg sm:px-10">
+                <div class="mx-auto max-w-3xl">
+                    <div class="divide-y divide-gray-300/50">
+                        <div class="space-y-6 py-8 text-base leading-7 text-gray-900">
+                            <p>This biogas volume calculator calculates the volume of rectangular lagoon-style anaerobic
+                                digesters using the following equation:</p>
+                            <p>V =IF(B7>2.8,(-0.00001382*B8^2)+(3.57457926*B8)-148273+B5, else (0.3323*B8-17508+B5)
+                            </p>
+                            <ul class=" space-y-1 list-disc list-inside">
+                                <li>B1 = Length (user input)</li>
+                                <li>B2 = Width (user input)</li>
+                                <li>B3 = B1*B2 = Length * Width = Area</li>
+                                <li>B4 = Freeboard Height (user input)</li>
+                                <li>B5 = (B1*B2)*B4 = (Length*Width)*Freeboard Height = Freeboard Volume</li>
+                                <li>B7 = Cover Height (user input)</li>
+                                <li>B8 = B7*B3 = Cover Height * Area</li>
+                            </ul>
+                            <p>The output is in cubic feet and also in cubic yards (cubic feet/27).
+                                This is the calculation sheet: <a class="text-sky-500 hover:text-sky-600"
+                                    href="https://docs.google.com/spreadsheets/d/1BCEKop_INTDHuMe5SK4zIHNpOYHu3c5f/edit#gid=1512140818"
+                                    target="_blank" rel="noopener noreferrer">Calculation Tool</a></p>
+                            <p>The measurement procedure as well as project background is outlined
+                                extensively in this report: <a class="text-sky-500 hover:text-sky-600"
+                                    href="https://docs.google.com/document/d/1YnVLWxVhnzkUIKbNktvXwmu7yw8kbtRQAbScTiuuwLo/edit"
+                                    target="_blank" rel="noopener noreferrer">Senior Design Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     <script>
@@ -147,7 +165,9 @@
             const length = parseFloat(document.getElementById('length').value);
             const width = parseFloat(document.getElementById('width').value);
             const freeboardHeight = parseFloat(document.getElementById('freeboardHeight').value);
-            const coverHeight = parseFloat(document.getElementById('coverHeight').value);
+            const lowPointElevation = parseFloat(document.getElementById('lowPointElevation').value);
+            const highPointElevation = parseFloat(document.getElementById('highPointElevation').value);
+            const coverHeight = (lowPointElevation + highPointElevation) / 2;
             const b3Area = length * width;
             const b5FreeboardVolume = (length * width) * freeboardHeight;
             const b8 = coverHeight * b3Area;
